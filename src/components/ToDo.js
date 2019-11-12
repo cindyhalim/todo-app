@@ -15,11 +15,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import EditToDo from "./EditToDo";
 
 export default function ToDoContainer({
-  index,
-  title,
-  description,
-  dueDate,
-  completed,
   updateCompleted,
   removeTask,
   editTask,
@@ -71,7 +66,7 @@ export default function ToDoContainer({
 
   return (
     <div className={classes.toDoContainer}>
-      {!editClicked ? (
+      {!editClicked && (
         <ExpansionPanel className={classes.toDo}>
           <ExpansionPanelSummary
             className={classes.toDoSummary}
@@ -84,50 +79,45 @@ export default function ToDoContainer({
               aria-label="Acknowledge"
               onClick={event => {
                 event.stopPropagation();
+                const index = taskIndex(task);
                 updateCompleted(index);
               }}
               onFocus={event => event.stopPropagation()}
-              control={<Checkbox checked={completed ? true : false} />}
-              label={title}
+              control={<Checkbox checked={task.completed ? true : false} />}
+              label={task.title}
             />
 
-            {completed ? "DONE" : "PENDING "}
+            {task.completed ? "DONE" : "PENDING "}
 
-            {dueDate > moment(Date.now()).format("MMMM DD YYYY")
-              ? `(due
-            ${moment(dueDate)
+            {task.dueDate >
+              moment(new Date(Date.now())).format("MMMM DD YYYY") &&
+              `(due
+            ${moment(task.dueDate)
               .startOf("day")
-              .fromNow()})`
-              : ""}
+              .fromNow()})`}
           </ExpansionPanelSummary>
 
           <ExpansionPanelDetails className={classes.toDoDetails}>
-            <Typography color="textSecondary">{description}</Typography>
-            <Typography color="textSecondary">Due date: {dueDate}</Typography>
+            <Typography color="textSecondary">{task.description}</Typography>
+            <Typography color="textSecondary">
+              Due date: {task.dueDate}
+            </Typography>
             <section>
               <EditIcon onClick={() => setEditClicked(!editClicked)} />
               <DeleteIcon onClick={() => removeTask(task)} />
             </section>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-      ) : (
-        ""
       )}
-      {editClicked ? (
+
+      {editClicked && (
         <EditToDo
-          index={index}
-          title={title}
-          description={description}
-          dueDate={dueDate}
           editClicked={editClicked}
           setEditClicked={setEditClicked}
           editTask={editTask}
           task={task}
           taskIndex={taskIndex}
-          completed={completed}
         />
-      ) : (
-        ""
       )}
     </div>
   );

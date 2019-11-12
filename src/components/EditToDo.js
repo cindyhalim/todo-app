@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "date-fns";
 import moment from "moment";
+import "date-fns";
+
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -12,24 +13,21 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from "@material-ui/pickers";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 export default function EditToDo({
-  title,
-  description,
-  dueDate,
+  task,
   editClicked,
   setEditClicked,
   editTask,
-  task,
-  taskIndex,
-  completed
+  taskIndex
 }) {
   const [editedTask, setEditedTask] = useState({
-    title: title,
-    description: description,
-    dueDate: dueDate,
-    completed: completed
+    title: task.title,
+    description: task.description,
+    dueDate: task.dueDate,
+    completed: task.completed
   });
 
   const handleDateChange = date => {
@@ -108,7 +106,6 @@ export default function EditToDo({
               margin="normal"
               variant="outlined"
             />
-
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
                 disableToolbar

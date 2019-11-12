@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import NewToDo from "./NewToDo";
 
 import Button from "@material-ui/core/Button";
@@ -42,15 +43,13 @@ export default function NavBar({ tasks, setTasks, setFilter }) {
         Upcoming
       </Button>
 
-      {clickNew ? (
+      {clickNew && (
         <NewToDo
           tasks={tasks}
           setTasks={setTasks}
           clickNew={clickNew}
           setClickNew={setClickNew}
         />
-      ) : (
-        ""
       )}
     </div>
   );

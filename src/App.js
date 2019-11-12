@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import moment from "moment";
+import isEqual from "lodash/isEqual";
 
 import NavBar from "./components/NavBar";
 import ToDo from "./components/ToDo";
-
-import isEqual from "lodash/isEqual";
 
 import "./App.css";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,7 +13,7 @@ export default function App() {
     {
       title: "Complete ToDo Challenge",
       description: "use React and complete in less than 3 hours",
-      dueDate: moment(Date.now()).format("MMMM DD YYYY"),
+      dueDate: "November 11, 2019",
       completed: false
     },
     {
@@ -63,11 +62,6 @@ export default function App() {
     return completedTasks.map((task, index) => (
       <ToDo
         key={index}
-        index={index}
-        title={task.title}
-        description={task.description}
-        dueDate={task.dueDate}
-        completed={task.completed}
         updateCompleted={updateCompleted}
         removeTask={removeTask}
         editTask={editTask}
@@ -85,11 +79,6 @@ export default function App() {
     return upcomingTasks.map((task, index) => (
       <ToDo
         key={index}
-        index={index}
-        title={task.title}
-        description={task.description}
-        dueDate={task.dueDate}
-        completed={task.completed}
         updateCompleted={updateCompleted}
         removeTask={removeTask}
         editTask={editTask}
@@ -107,11 +96,6 @@ export default function App() {
     return todayTasks.map((task, index) => (
       <ToDo
         key={index}
-        index={index}
-        title={task.title}
-        description={task.description}
-        dueDate={task.dueDate}
-        completed={task.completed}
         updateCompleted={updateCompleted}
         removeTask={removeTask}
         editTask={editTask}
@@ -148,17 +132,13 @@ export default function App() {
         filter={filter}
         setFilter={setFilter}
       />
-      {filter === "all" ? (
+
+      {filter === "all" && (
         <div>
           <h3>All</h3>
           {tasks.map((task, index) => (
             <ToDo
               key={index}
-              index={index}
-              title={task.title}
-              description={task.description}
-              dueDate={task.dueDate}
-              completed={task.completed}
               updateCompleted={updateCompleted}
               removeTask={removeTask}
               editTask={editTask}
@@ -167,32 +147,25 @@ export default function App() {
             />
           ))}
         </div>
-      ) : (
-        ""
       )}
-      {filter === "completed" ? (
+
+      {filter === "completed" && (
         <div>
           <h3>Completed</h3>
           {filterByCompleted(tasks)}
         </div>
-      ) : (
-        ""
       )}
-      {filter === "today" ? (
+      {filter === "today" && (
         <div>
           <h3>Today</h3>
           {filterByToday(tasks)}
         </div>
-      ) : (
-        ""
       )}
-      {filter === "upcoming" ? (
+      {filter === "upcoming" && (
         <div>
           <h3>Upcoming</h3>
           {filterByUpcoming(tasks)}
         </div>
-      ) : (
-        ""
       )}
     </div>
   );
