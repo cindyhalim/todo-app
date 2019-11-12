@@ -1,6 +1,6 @@
 # ToDo App
 
-A simple to do app front-end application built with React.
+A simple ToDo front-end application built with React.
 
 ## Dependencies:
  - Material UI
