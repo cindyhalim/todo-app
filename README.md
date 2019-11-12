@@ -9,7 +9,7 @@ A simple ToDo front-end application built with React. Users can create new tasks
  - Lodash
  
 ## Preview:
-![screenshot](https://github.com/cindyhalim/todo-app/blob/master/assets/screenshot.png?raw=true)
+![screenshot](https://github.com/cindyhalim/todo-app/blob/master/assets/updated_screenshot.png?raw=true)
 
 ## Getting Started:
 - Install all dependencies (using the npm install command).
