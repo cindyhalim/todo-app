@@ -91,11 +91,13 @@ export default function ToDoContainer({
               label={title}
             />
 
+            {completed ? "DONE" : "PENDING "}
+
             {dueDate > moment(Date.now()).format("MMMM DD YYYY")
-              ? `Due
+              ? `(due
             ${moment(dueDate)
               .startOf("day")
-              .fromNow()}`
+              .fromNow()})`
               : ""}
           </ExpansionPanelSummary>
 
