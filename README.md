@@ -1,6 +1,6 @@
 # ToDo App
 
-A simple ToDo front-end application built with React. Users can edit and remove existing tasks and view their tasks based on completed, due today, and upcoming.
+A simple ToDo front-end application built with React. Users can create new tasks, edit and remove existing tasks, as well as view their tasks based on completed, due today, and upcoming.
 
 ## Dependencies:
  - Material UI
