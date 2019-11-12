@@ -31,13 +31,9 @@ export default function App() {
     setTasks(newTasks);
   };
 
-  const removeTask = deletedTask => {
+  const removeTask = index => {
     const newTask = [...tasks];
-    for (let i = 0; i < newTask.length; i++) {
-      if (isEqual(newTask[i], deletedTask)) {
-        newTask.splice(i, 1);
-      }
-    }
+    newTask.splice(index, 1);
     setTasks(newTask);
   };
 

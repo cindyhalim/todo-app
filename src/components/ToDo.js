@@ -104,7 +104,12 @@ export default function ToDoContainer({
             </Typography>
             <section>
               <EditIcon onClick={() => setEditClicked(!editClicked)} />
-              <DeleteIcon onClick={() => removeTask(task)} />
+              <DeleteIcon
+                onClick={() => {
+                  const index = taskIndex(task);
+                  removeTask(index);
+                }}
+              />
             </section>
           </ExpansionPanelDetails>
         </ExpansionPanel>
