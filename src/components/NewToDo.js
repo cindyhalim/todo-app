@@ -15,24 +15,11 @@ import {
 
 import { makeStyles } from "@material-ui/core/styles";
 
-export default function NewToDo({ tasks, setTasks, clickNew, setClickNew }) {
+export default function NewToDo({ addTask, clickNew, setClickNew }) {
   const [date, setDate] = useState(moment(Date.now()).format("MMMM DD YYYY"));
 
   const handleDateChange = date => {
     setDate(moment(date).format("MMMM DD YYYY"));
-  };
-
-  const addTask = event => {
-    const newTasks = [
-      ...tasks,
-      {
-        title: event.target.title.value,
-        description: event.target.description.value,
-        dueDate: date,
-        completed: false
-      }
-    ];
-    setTasks(newTasks);
   };
 
   const useStyles = makeStyles({
@@ -65,7 +52,7 @@ export default function NewToDo({ tasks, setTasks, clickNew, setClickNew }) {
       <form
         onSubmit={event => {
           event.preventDefault();
-          addTask(event);
+          addTask(event, date);
           setClickNew(!clickNew);
         }}
       >

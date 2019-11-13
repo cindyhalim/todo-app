@@ -5,7 +5,7 @@ import NewToDo from "./NewToDo";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
-export default function NavBar({ tasks, setTasks, setFilter }) {
+export default function NavBar({ addTask, setFilter }) {
   const [clickNew, setClickNew] = useState(false);
 
   const useStyles = makeStyles({
@@ -45,8 +45,7 @@ export default function NavBar({ tasks, setTasks, setFilter }) {
 
       {clickNew && (
         <NewToDo
-          tasks={tasks}
-          setTasks={setTasks}
+          addTask={addTask}
           clickNew={clickNew}
           setClickNew={setClickNew}
         />

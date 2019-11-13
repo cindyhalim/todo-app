@@ -14,7 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import EditToDo from "./EditToDo";
 
-export default function ToDoContainer({
+export default function ToDo({
   updateCompleted,
   removeTask,
   editTask,

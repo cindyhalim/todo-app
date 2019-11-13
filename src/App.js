@@ -25,9 +25,23 @@ export default function App() {
   ]);
   const [filter, setFilter] = useState("all");
 
+  // Basic features of the ToDo app
   const updateCompleted = index => {
     const newTasks = [...tasks];
     newTasks[index].completed = !tasks[index].completed;
+    setTasks(newTasks);
+  };
+
+  const addTask = (event, date) => {
+    const newTasks = [
+      ...tasks,
+      {
+        title: event.target.title.value,
+        description: event.target.description.value,
+        dueDate: date,
+        completed: false
+      }
+    ];
     setTasks(newTasks);
   };
 
@@ -53,6 +67,7 @@ export default function App() {
     }
   };
 
+  // Filter options
   const filterByCompleted = tasks => {
     const completedTasks = tasks.filter(task => task.completed === true);
     return completedTasks.map((task, index) => (
@@ -71,7 +86,6 @@ export default function App() {
     const upcomingTasks = tasks.filter(
       task => task.dueDate > moment(Date.now()).format("MMMM DD YYYY")
     );
-
     return upcomingTasks.map((task, index) => (
       <ToDo
         key={index}
@@ -88,7 +102,6 @@ export default function App() {
     const todayTasks = tasks.filter(
       task => task.dueDate === moment(Date.now()).format("MMMM DD YYYY")
     );
-
     return todayTasks.map((task, index) => (
       <ToDo
         key={index}
@@ -122,12 +135,7 @@ export default function App() {
   return (
     <div className={classes.mainContainer}>
       <h1 className={classes.title}>ToDo App</h1>
-      <NavBar
-        tasks={tasks}
-        setTasks={setTasks}
-        filter={filter}
-        setFilter={setFilter}
-      />
+      <NavBar addTask={addTask} filter={filter} setFilter={setFilter} />
 
       {filter === "all" && (
         <div>
